@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: example-ingress
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+    ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  tls:
+    - secretName: minikube-ingress-secret
+  rules:
+    - host: k8s.io
+      http:
+        paths:
+          - path: /apple
+            backend:
+              serviceName: apple-service
+              servicePort: 5678
+    - host: localhost
+      http:
+        paths:
+          - path: /canty
+            backend:
+              serviceName: canty-service
+              servicePort: 5678

@@ -1,0 +1,11 @@
+{
+  "name": "simple-node",
+  "version": "1.0.0",
+  "description": "a sample simple application for kubernetes up and running",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "lawrence onaulogho",
+  "license": "MIT"
+}

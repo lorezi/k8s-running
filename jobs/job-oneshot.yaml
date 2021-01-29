@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: oneshot
+spec:
+  # ttlSecondsAfterFinished: 100
+  template:
+    spec:
+      containers:
+        - name: kuard
+          image: gcr.io/kuar-demo/kuard-amd64:blue
+          imagePullPolicy: Always
+          # command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)"]
+          args:
+            - "--keygen-enable"
+            - "--keygen-exit-on-complete"
+            - "--keygen-num-to-gen=10"
+      restartPolicy: OnFailure

@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: canty-app
+  labels:
+    name: canty-app
+    app: canty
+spec:
+  containers:
+    - name: canty-app
+      image: hashicorp/http-echo
+      resources:
+        limits:
+          memory: "128Mi"
+          cpu: "500m"
+      args:
+        - "-text=canty"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: canty-service
+spec:
+  type: NodePort
+  selector:
+    app: canty
+  ports:
+    - protocol: TCP
+      port: 5678
+      name: http
